@@ -24,7 +24,7 @@
 /* ========== Right panel — form (desktop) ========== */
 .login-right {
   flex: 1;
-  background: #0e0e18;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,16 +35,23 @@
 
 /* ========== Logo (top-right) ========== */
 .login-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 24px;
   right: 28px;
-  z-index: 2;
+  margin-left: 50%;
+}
+.abcd {
+  color: rgb(17,154,145);
+  font-size: 50%;
 }
 
 .login-logo svg {
-  width: 44px;
-  height: 44px;
-  fill: white;
+  width: 20%;
+  height:auto;
+  fill: rgb(17,154,145);
 }
 
 /* ========== White form card ========== */
@@ -89,7 +96,9 @@
   color: #1a1a2e;
   background: #fff;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
   box-sizing: border-box;
 }
 
@@ -251,7 +260,8 @@
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
     max-width: 340px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
       0 0 40px rgba(0, 180, 216, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }

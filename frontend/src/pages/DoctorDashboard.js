@@ -211,78 +211,64 @@ function riskClass(risk) {
 // ────────────────────────────
 // HumanBody SVG Component
 // ────────────────────────────
-function HumanBodySVG({ item }) {
+function HumanBodySVG({ item, editable = false, onSymptomToggle }) {
   const [tooltip, setTooltip] = useState(null);
   const activeSymptoms = getActiveSymptoms(item);
   const isFemale = (item.patient_gender || "").toLowerCase() === "female";
-  const hasFullBody = FULL_BODY_SYMPTOMS.some((s) =>
-    activeSymptoms.includes(s),
-  );
-  const fullBodyActive = FULL_BODY_SYMPTOMS.filter((s) =>
-    activeSymptoms.includes(s),
-  );
 
   return (
     <div className="body-svg-container">
-      <svg viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg">
-        {/* Full-body glow */}
-        {hasFullBody && (
-          <path
-            d={isFemale ? FEMALE_PATH : MALE_PATH}
-            fill="none"
-            stroke={severityColor(
-              getRegionSeverity(fullBodyActive, FULL_BODY_SYMPTOMS) || "mild",
-            )}
-            strokeWidth="6"
-            className="body-glow"
-            opacity="0.3"
-          />
-        )}
+      <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+        {/* Soft body glow */}
+        <defs>
+          <radialGradient id="bodyGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        <ellipse cx="150" cy="200" rx="110" ry="180" fill="url(#bodyGlow)" />
 
         {/* Silhouette */}
         <path
           d={isFemale ? FEMALE_PATH : MALE_PATH}
-          fill="rgba(0,0,0,0.04)"
-          stroke="rgba(0,0,0,0.12)"
-          strokeWidth="1"
+          fill="#f1f5f9"
+          stroke="#cbd5e1"
+          strokeWidth="2"
         />
 
         {/* Region markers */}
         {BODY_REGIONS.map((region) => {
-          const severity = getRegionSeverity(activeSymptoms, region.symptoms);
-          if (!severity) return null;
           const matched = region.symptoms.filter((s) =>
             activeSymptoms.includes(s),
           );
+
+          const severity = getRegionSeverity(activeSymptoms, region.symptoms);
+          const color = severityColor(severity || "mild");
+
           return (
             <g key={region.name}>
               <circle
                 cx={region.cx}
                 cy={region.cy}
-                r="10"
-                fill={severityColor(severity)}
-                opacity="0.3"
+                r="12"
+                fill={matched.length ? color : "#e2e8f0"}
+                stroke="#64748b"
+                strokeWidth="1"
                 className="body-marker"
-              />
-              <circle
-                cx={region.cx}
-                cy={region.cy}
-                r="5"
-                fill={severityColor(severity)}
-                className="body-marker-inner"
-              />
-              {/* Hover target */}
-              <circle
-                cx={region.cx}
-                cy={region.cy}
-                r="16"
-                fill="transparent"
-                style={{ cursor: "pointer" }}
+                style={{ cursor: editable ? "pointer" : "default" }}
+                onClick={() => {
+                  if (!editable) return;
+                  region.symptoms.forEach((s) => onSymptomToggle?.(s));
+                }}
                 onMouseEnter={() =>
                   setTooltip({
                     x: region.cx,
-                    y: region.cy - 20,
-                    text: `${region.name}: ${matched.map(symptomLabel).join(", ")}`,
+                    y: region.cy - 18,
+                    text:
+                      region.name +
+                      ": " +
+                      region.symptoms.map(symptomLabel).join(", "),
                   })
                 }
                 onMouseLeave={() => setTooltip(null)}
@@ -297,24 +283,12 @@ function HumanBodySVG({ item }) {
           className="marker-tooltip"
           style={{
             left: `${(tooltip.x / 300) * 100}%`,
-            top: `${(tooltip.y / 380) * 100}%`,
+            top: `${(tooltip.y / 400) * 100}%`,
           }}
         >
           {tooltip.text}
         </div>
       )}
-
-      <div className="body-legend">
-        <div className="legend-item">
-          <div className="legend-dot critical" /> Critical
-        </div>
-        <div className="legend-item">
-          <div className="legend-dot moderate" /> Moderate
-        </div>
-        <div className="legend-item">
-          <div className="legend-dot mild" /> Mild
-        </div>
-      </div>
     </div>
   );
 }
@@ -578,7 +552,17 @@ function DoctorDashboard() {
             {/* Left: Body SVG (triage only) */}
             {isTriage && (
               <div className="detail-left">
-                <HumanBodySVG item={item} />
+                <HumanBodySVG
+                  item={item}
+                  editable={true}
+                  onSymptomToggle={(symptom) => {
+                    setSelected((prev) => {
+                      const updated = { ...prev.data };
+                      updated[symptom] = !updated[symptom];
+                      return { ...prev, data: updated };
+                    });
+                  }}
+                />
               </div>
             )}
 

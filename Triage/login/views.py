@@ -393,7 +393,7 @@ def nurse_dashboard_api(request):
             if field.name in ('patient', 'nurse', 'assigned_doctor'):
                 continue
             entry[field.name] = getattr(t, field.name)
-
+        entry['type'] = 'triage'
         entry['patient_name'] = t.patient.full_name
         entry['patient_age'] = t.patient.age
         entry['patient_gender'] = t.patient.gender
@@ -402,6 +402,28 @@ def nurse_dashboard_api(request):
 
         data.append(entry)
 
+    emergency_requests = EmergencyRequest.objects.filter(
+        nurse=request.user
+    ).select_related('patient').order_by('-created_at')
+
+    for e in emergency_requests:
+        entry = {}
+
+        for field in e._meta.fields:
+            if field.name in ('patient', 'nurse', 'doctor'):
+                continue
+            entry[field.name] = getattr(e, field.name)
+
+        entry['type'] = 'emergency'
+        entry['patient_name'] = e.patient.full_name
+        entry['patient_age'] = e.patient.age
+        entry['patient_gender'] = e.patient.gender
+        entry['nurse_id'] = e.nurse_id
+        entry['assigned_doctor_id'] = e.doctor_id
+
+        data.append(entry)
+
+        
     return Response(data)
 
 

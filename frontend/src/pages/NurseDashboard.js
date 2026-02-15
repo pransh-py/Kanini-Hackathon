@@ -171,14 +171,19 @@ function NurseDashboard() {
         </div>
 
         {/* Triage Requests */}
-        <h2 className="section-title">Triage Requests</h2>
+        <h2 className="section-title"> Requests</h2>
 
         {data.length === 0 ? (
-          <p className="no-data">No triage requests found.</p>
+          <p className="no-data">No requests found.</p>
         ) : (
           <div className="triage-grid">
             {data.map((item) => (
-              <div key={item.id} className="triage-card">
+              <div
+                key={`${item.type}-${item.id}`}
+                className={`triage-card ${
+                  item.type === "emergency" ? "emergency-card" : ""
+                }`}
+              >
                 <div className="triage-card-header">
                   <div>
                     <div className="patient-name">
@@ -190,38 +195,52 @@ function NurseDashboard() {
                     </div>
                   </div>
                   <span
-                    className={`risk-badge ${getRiskClass(item.predicted_risk)}`}
+                    className={`risk-badge ${
+                      item.type === "emergency"
+                        ? "risk-high"
+                        : getRiskClass(item.predicted_risk)
+                    }`}
                   >
-                    {item.predicted_risk || "Pending"}
+                    {item.type === "emergency"
+                      ? "EMERGENCY"
+                      : item.predicted_risk || "Pending"}
                   </span>
                 </div>
 
-                <div className="vitals-grid">
-                  <div className="vital-item">
-                    <div className="vital-label">BP</div>
-                    <div className="vital-value">{item.systolic_bp || "—"}</div>
-                  </div>
-                  <div className="vital-item">
-                    <div className="vital-label">HR</div>
-                    <div className="vital-value">{item.heart_rate || "—"}</div>
-                  </div>
-                  <div className="vital-item">
-                    <div className="vital-label">Temp</div>
-                    <div className="vital-value">
-                      {item.temperature ? `${item.temperature}°` : "—"}
+                {item.type === "triage" && (
+                  <div className="vitals-grid">
+                    <div className="vital-item">
+                      <div className="vital-label">BP</div>
+                      <div className="vital-value">
+                        {item.systolic_bp || "—"}
+                      </div>
+                    </div>
+                    <div className="vital-item">
+                      <div className="vital-label">HR</div>
+                      <div className="vital-value">
+                        {item.heart_rate || "—"}
+                      </div>
+                    </div>
+                    <div className="vital-item">
+                      <div className="vital-label">Temp</div>
+                      <div className="vital-value">
+                        {item.temperature ? `${item.temperature}°` : "—"}
+                      </div>
+                    </div>
+                    <div className="vital-item">
+                      <div className="vital-label">O2</div>
+                      <div className="vital-value">
+                        {item.oxygen ? `${item.oxygen}%` : "—"}
+                      </div>
                     </div>
                   </div>
-                  <div className="vital-item">
-                    <div className="vital-label">O2</div>
-                    <div className="vital-value">
-                      {item.oxygen ? `${item.oxygen}%` : "—"}
-                    </div>
-                  </div>
-                </div>
+                )}
 
                 <div className="triage-card-footer">
                   <span className="department">
-                    {item.recommended_department || "Unassigned"}
+                    {item.type === "emergency"
+                      ? item.department || "Emergency"
+                      : item.recommended_department || "Unassigned"}
                   </span>
                   <span className="timestamp">
                     {formatDate(item.created_at)}

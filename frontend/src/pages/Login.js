@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DnaAnimation from "../components/DnaAnimation";
@@ -32,11 +31,11 @@ function Login() {
     fetch("http://localhost:8000/api/user-role/", {
       credentials: "include",
     })
-      .then(res => {
+      .then((res) => {
         if (!res.ok) return null;
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         if (!data) return;
 
         if (data.role === "nurse") navigate("/nurse");
@@ -78,7 +77,6 @@ function Login() {
       if (roleData.role === "nurse") navigate("/nurse");
       else if (roleData.role === "doctor") navigate("/doctor");
       else setError("No role assigned");
-
     } catch {
       setError("Server error. Try again.");
     }
@@ -101,11 +99,31 @@ function Login() {
         {/* Logo icon */}
         <div className="login-logo">
           <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <rect x="18" y="4" width="12" height="30" rx="3" fill="white" />
-            <rect x="6" y="12" width="36" height="12" rx="3" fill="white" />
-            <ellipse cx="36" cy="38" rx="6" ry="3" fill="none" stroke="white" strokeWidth="1.5" />
-            <ellipse cx="36" cy="42" rx="6" ry="3" fill="none" stroke="white" strokeWidth="1.5" />
+            <rect x="18" y="4" width="12" height="30" rx="3" fill="rgb(17,154,145)" />
+            <rect x="6" y="12" width="36" height="12" rx="3" fill="rgb(17,154,145)" />
+            <ellipse
+              cx="36"
+              cy="38"
+              rx="6"
+              ry="3"
+              fill="none"
+              stroke="rgb(17,154,145)"
+              strokeWidth="1.5"
+            />
+            <ellipse
+              cx="36"
+              cy="42"
+              rx="6"
+              ry="3"
+              fill="none"
+              stroke="rgb(17,154,145)"
+              strokeWidth="1.5"
+            />
           </svg>
+          <div class="abcd">
+          <h1>Apex Health</h1>
+          <p>Medicine Redefined</p>
+          </div>
         </div>
 
         {/* Login form card */}
@@ -117,7 +135,7 @@ function Login() {
                 <input
                   type="text"
                   value={employeeId}
-                  onChange={e => setEmployeeId(e.target.value)}
+                  onChange={(e) => setEmployeeId(e.target.value)}
                   placeholder="e.g. EMP-A1B2C3"
                   required
                 />
@@ -130,7 +148,7 @@ function Login() {
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
                 <button
@@ -140,14 +158,28 @@ function Login() {
                   tabIndex={-1}
                 >
                   {showPassword ? (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
                       <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
                       <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24" />
                       <line x1="1" y1="1" x2="23" y2="23" />
                     </svg>
                   ) : (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                       <circle cx="12" cy="12" r="3" />
                     </svg>
@@ -165,10 +197,6 @@ function Login() {
         </div>
 
         {/* Branding */}
-        <div className="login-branding">
-          <h1>Apex Health</h1>
-          <p>Medicine Redefined</p>
-        </div>
       </div>
     </div>
   );
