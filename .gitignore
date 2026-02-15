@@ -1,0 +1,35 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Django
+Triage/db.sqlite3
+django.err.log
+django.out.log
+django_server.log
+
+# Node
+frontend/node_modules/
+frontend/build/
+
+# IDE / OS
+.claude/
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+.DS_Store
+
+# Certificates & binaries
+*.pem
+mkcert.exe
+
+# Generated / non-code files
+Apex_Health_Presentation.pptx
+generate_ppt.py
+architecture-diagram.html
+Screenshot*.png
+DNA-Animation-main/
