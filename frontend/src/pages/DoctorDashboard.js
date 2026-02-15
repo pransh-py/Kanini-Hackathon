@@ -242,8 +242,8 @@ function HumanBodySVG({ item }) {
         {/* Silhouette */}
         <path
           d={isFemale ? FEMALE_PATH : MALE_PATH}
-          fill="rgba(255,255,255,0.08)"
-          stroke="rgba(255,255,255,0.15)"
+          fill="rgba(0,0,0,0.04)"
+          stroke="rgba(0,0,0,0.12)"
           strokeWidth="1"
         />
 
@@ -618,7 +618,7 @@ function DoctorDashboard() {
                 {isTriage && item.recommended_department && (
                   <div className="patient-info-row">
                     <span className="label">Department:</span>
-                    <span className="value" style={{ color: "#818cf8" }}>
+                    <span className="value" style={{ color: "#4361ee" }}>
                       {item.recommended_department.replace(/_/g, " ")}
                     </span>
                   </div>
@@ -626,7 +626,7 @@ function DoctorDashboard() {
                 {!isTriage && item.department && (
                   <div className="patient-info-row">
                     <span className="label">Department:</span>
-                    <span className="value" style={{ color: "#f87171" }}>
+                    <span className="value" style={{ color: "#e74c5a" }}>
                       {item.department.replace(/_/g, " ")}
                     </span>
                   </div>
@@ -651,7 +651,7 @@ function DoctorDashboard() {
                     <div
                       style={{
                         fontSize: 12,
-                        color: "#6b7280",
+                        color: "#9ca3af",
                         textTransform: "uppercase",
                         letterSpacing: "0.5px",
                         marginBottom: 6,
@@ -939,7 +939,7 @@ function DoctorDashboard() {
           <svg viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
           </svg>
-          <span>MedTriage</span>
+          <span>Apex Health</span>
         </div>
         <div className="doctor-header-right">
           <span className="doctor-name">

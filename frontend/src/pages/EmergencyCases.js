@@ -531,7 +531,7 @@ function EmergencyCases() {
 
   const renderInputModeSelector = () => (
     <div style={{ marginTop: 24 }}>
-      <h2 className="section-title" style={{ color: "#f87171" }}>
+      <h2 className="section-title" style={{ color: "#e74c5a" }}>
         Symptom Input
       </h2>
       <div className="patient-toggle">
@@ -781,15 +781,15 @@ function EmergencyCases() {
           style={{ cursor: "pointer" }}
         >
           <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <rect x="18" y="4" width="12" height="30" rx="3" fill="white" />
-            <rect x="6" y="12" width="36" height="12" rx="3" fill="white" />
+            <rect x="18" y="4" width="12" height="30" rx="3" fill="#1a9e96" />
+            <rect x="6" y="12" width="36" height="12" rx="3" fill="#1a9e96" />
             <ellipse
               cx="36"
               cy="38"
               rx="6"
               ry="3"
               fill="none"
-              stroke="white"
+              stroke="#1a9e96"
               strokeWidth="1.5"
             />
             <ellipse
@@ -798,7 +798,7 @@ function EmergencyCases() {
               rx="6"
               ry="3"
               fill="none"
-              stroke="white"
+              stroke="#1a9e96"
               strokeWidth="1.5"
             />
           </svg>
@@ -817,14 +817,7 @@ function EmergencyCases() {
       <main className="nurse-main">
         {/* Error Banner */}
         {errorMsg && (
-          <div style={{
-            marginBottom: 16,
-            padding: "12px 16px",
-            background: "rgba(239, 68, 68, 0.08)",
-            border: "1px solid rgba(239, 68, 68, 0.3)",
-            borderRadius: 8,
-            color: "#f87171",
-            fontSize: 14,
+          <div className="error-banner" style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -835,7 +828,7 @@ function EmergencyCases() {
               style={{
                 background: "none",
                 border: "none",
-                color: "#f87171",
+                color: "#dc2626",
                 cursor: "pointer",
                 fontSize: 18,
                 padding: "0 4px",

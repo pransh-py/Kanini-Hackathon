@@ -667,15 +667,15 @@ function Inpatients() {
           style={{ cursor: "pointer" }}
         >
           <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <rect x="18" y="4" width="12" height="30" rx="3" fill="white" />
-            <rect x="6" y="12" width="36" height="12" rx="3" fill="white" />
+            <rect x="18" y="4" width="12" height="30" rx="3" fill="#1a9e96" />
+            <rect x="6" y="12" width="36" height="12" rx="3" fill="#1a9e96" />
             <ellipse
               cx="36"
               cy="38"
               rx="6"
               ry="3"
               fill="none"
-              stroke="white"
+              stroke="#1a9e96"
               strokeWidth="1.5"
             />
             <ellipse
@@ -684,7 +684,7 @@ function Inpatients() {
               rx="6"
               ry="3"
               fill="none"
-              stroke="white"
+              stroke="#1a9e96"
               strokeWidth="1.5"
             />
           </svg>
@@ -703,14 +703,7 @@ function Inpatients() {
       <main className="nurse-main">
         {/* Error Banner */}
         {errorMsg && (
-          <div style={{
-            marginBottom: 16,
-            padding: "12px 16px",
-            background: "rgba(239, 68, 68, 0.08)",
-            border: "1px solid rgba(239, 68, 68, 0.3)",
-            borderRadius: 8,
-            color: "#f87171",
-            fontSize: 14,
+          <div className="error-banner" style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -721,7 +714,7 @@ function Inpatients() {
               style={{
                 background: "none",
                 border: "none",
-                color: "#f87171",
+                color: "#dc2626",
                 cursor: "pointer",
                 fontSize: 18,
                 padding: "0 4px",
@@ -825,7 +818,7 @@ function Inpatients() {
                   <>
                     <p
                       style={{
-                        color: "#d1d5db",
+                        color: "#4b5563",
                         fontSize: 14,
                         marginBottom: 8,
                       }}
@@ -995,7 +988,7 @@ function Inpatients() {
 
             <h2
               className="section-title"
-              style={{ color: "#818cf8", marginTop: 24 }}
+              style={{ color: "#4361ee", marginTop: 24 }}
             >
               Triage Assessment
             </h2>
@@ -1051,7 +1044,7 @@ function Inpatients() {
             </div>
 
             {/* Vitals */}
-            <h3 style={{ color: "#e5e7eb", marginBottom: 12, marginTop: 20 }}>
+            <h3 style={{ color: "#1a1a2e", marginBottom: 12, marginTop: 20 }}>
               Vitals
             </h3>
             <div className="vitals-form">
@@ -1240,7 +1233,7 @@ function Inpatients() {
         {/* ===== Existing inpatient records ===== */}
         <h2
           className="section-title"
-          style={{ color: "#818cf8", marginTop: 32 }}
+          style={{ color: "#4361ee", marginTop: 32 }}
         >
           Inpatient Records
         </h2>
@@ -1252,7 +1245,7 @@ function Inpatients() {
               <div
                 key={item.id}
                 className="triage-card"
-                style={{ borderColor: "rgba(67, 97, 238, 0.2)" }}
+                style={{ borderColor: "#c7d2fe" }}
               >
                 <div className="triage-card-header">
                   <div>

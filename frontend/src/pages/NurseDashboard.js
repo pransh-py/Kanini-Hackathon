@@ -42,6 +42,7 @@ function NurseDashboard() {
   const [data, setData] = useState([]);
   const [nurseName, setNurseName] = useState("");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   // Protect route + get nurse name
@@ -97,15 +98,15 @@ function NurseDashboard() {
       <header className="nurse-header">
         <div className="nurse-header-left">
           <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <rect x="18" y="4" width="12" height="30" rx="3" fill="white" />
-            <rect x="6" y="12" width="36" height="12" rx="3" fill="white" />
+            <rect x="18" y="4" width="12" height="30" rx="3" fill="#1a9e96" />
+            <rect x="6" y="12" width="36" height="12" rx="3" fill="#1a9e96" />
             <ellipse
               cx="36"
               cy="38"
               rx="6"
               ry="3"
               fill="none"
-              stroke="white"
+              stroke="#1a9e96"
               strokeWidth="1.5"
             />
             <ellipse
@@ -114,7 +115,7 @@ function NurseDashboard() {
               rx="6"
               ry="3"
               fill="none"
-              stroke="white"
+              stroke="#1a9e96"
               strokeWidth="1.5"
             />
           </svg>

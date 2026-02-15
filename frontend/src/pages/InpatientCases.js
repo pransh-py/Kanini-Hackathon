@@ -213,15 +213,15 @@ function InpatientCases() {
             width="32"
             height="32"
           >
-            <rect x="18" y="4" width="12" height="30" rx="3" fill="white" />
-            <rect x="6" y="12" width="36" height="12" rx="3" fill="white" />
+            <rect x="18" y="4" width="12" height="30" rx="3" fill="#1a9e96" />
+            <rect x="6" y="12" width="36" height="12" rx="3" fill="#1a9e96" />
             <ellipse
               cx="36"
               cy="38"
               rx="6"
               ry="3"
               fill="none"
-              stroke="white"
+              stroke="#1a9e96"
               strokeWidth="1.5"
             />
             <ellipse
@@ -230,7 +230,7 @@ function InpatientCases() {
               rx="6"
               ry="3"
               fill="none"
-              stroke="white"
+              stroke="#1a9e96"
               strokeWidth="1.5"
             />
           </svg>
