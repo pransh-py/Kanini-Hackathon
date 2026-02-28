@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npx react-scripts build)",
       "Bash(./mkcert.exe:*)",
-      "Bash(python manage.py migrate:*)"
+      "Bash(python manage.py migrate:*)",
+      "Bash(cd \"/c/Users/Praanesh MB/OneDrive/Documents/Kanini-Hackathon-master\" && git commit -m \"$\\(cat <<'EOF'\nMerge remote: clean up tracked cache/db files, add .gitignore\n\n- Resolve merge conflicts by keeping local deletions of:\n  db.sqlite3, __pycache__/*.pyc, node_modules cache files\n- Bring in remote additions: risk_model_v3.py, NurseBottomNav.js\n- .gitignore now covers Python cache, venv, node_modules,\n  build/, SQLite, logs and secrets\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\nEOF\n\\)\" 2>&1)"
     ]
   }
 }
